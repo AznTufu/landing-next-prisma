@@ -1,0 +1,47 @@
+.advantageCard {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 64px;
+  color: white;
+  background-image: linear-gradient(
+    210deg,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 50px -50px 80px 0px rgba(9, 9, 21, 0.35);
+  flex: 1 1 0;
+}
+
+.advantageCard h4 {
+  font-size: 32px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+}
+
+.advantageCard li {
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+}
+
+.advantageCard ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 800px) {
+  .advantageCard {
+    padding: 32px;
+  }
+  .advantageCard h4 {
+    font-size: 24px;
+  }
+  .advantageCard li {
+    font-size: 14px;
+  }
+}

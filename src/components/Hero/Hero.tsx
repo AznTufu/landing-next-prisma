@@ -8,7 +8,7 @@ function Hero() {
   return (
     <div className="hero">
       <p className="heroCredits">By ZHANG Tony & PARISOT Romain</p>
-      <h1>Get Your A Website Personalize Just For You</h1>
+      <h1>Get A Website Personalize Just For You</h1>
       <p>
         We craft stunning digital experiences that transform your vision into
         reality. Our team of experts delivers innovative solutions tailored to

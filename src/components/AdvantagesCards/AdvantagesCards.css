@@ -1,0 +1,23 @@
+.advantagesCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  gap: 64px;
+  margin-left: 128px;
+  margin-right: 128px;
+}
+
+@media (max-width: 1300px) {
+  .advantagesCards {
+    margin-left: 128px;
+    margin-right: 128px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1000px) {
+  .advantagesCards {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+}
