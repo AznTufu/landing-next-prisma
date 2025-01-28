@@ -1,0 +1,32 @@
+.hero {
+  margin-left: 368px;
+  margin-right: 368px;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 32px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 72px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+}
+
+.hero p {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+}
+
+.heroCredits {
+  font-size: 14px !important;
+  color: #fc6d36;
+  font-family: "Inter", sans-serif !important;
+  font-weight: 800;
+}
