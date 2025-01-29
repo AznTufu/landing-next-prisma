@@ -1,0 +1,21 @@
+.mainValuesCards {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  padding-left: 128px;
+  padding-right: 128px;
+}
+
+@media (max-width: 1200px) {
+  .mainValuesCards {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mainValuesCards {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

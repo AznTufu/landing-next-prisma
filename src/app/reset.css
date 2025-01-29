@@ -1,0 +1,32 @@
+/* Remove all margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Include padding and border in element size */
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove text decoration and inherit color for links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove button default styles */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Ensure tables collapse borders by default */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

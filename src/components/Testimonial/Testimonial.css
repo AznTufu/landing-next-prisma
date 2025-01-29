@@ -1,0 +1,33 @@
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  color: white;
+  padding: 16px;
+}
+
+.testimonialInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.testimonialName {
+  font-style: Uppercase;
+  font-family: "Inter", sans-serif;
+}
+
+.testimonialRole {
+  font-family: "Open Sans", sans-serif;
+}
+
+.testimonialDescription {
+  font-family: "Open Sans", sans-serif;
+}
+
+.quoteIcon {
+  width: 32px;
+  height: 32px;
+  fill: #fc6d36;
+}

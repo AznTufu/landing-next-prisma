@@ -1,0 +1,38 @@
+.teamPresentation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  padding-left: 128px;
+  padding-right: 128px;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+.teamPresentationMember {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.teamPresentationMember:hover {
+  transform: scale(1.05);
+}
+
+.teamPresentationMember h3 {
+  color: #fc6d36;
+}
+
+.teamPresentationImage {
+  width: 300px;
+  height: 300px;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: 50% 30%;
+  padding-bottom: 16px;
+}
