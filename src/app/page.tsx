@@ -1,7 +1,8 @@
 import Hero from "@/components/Hero/Hero";
-import underHero from "../../public/img/webdev-05-2.webp";
+import purplesCircles from "../../public/img/purpulesCircles.webp";
 import Image from "next/image";
 import AdvantagesCards from "@/components/AdvantagesCards/AdvantagesCards";
+import MainValuesCards from "@/components/MainValuesCards/MainValuesCards";
 
 export default function Home() {
   return (
@@ -14,16 +15,14 @@ export default function Home() {
         <AdvantagesCards />
       </section>
 
-      <Image
-        style={{
-          width: "100%",
-          height: "auto",
-          display: "block",
-          margin: "0 auto",
-        }}
-        src={underHero}
-        alt="illustration of website development"
-      />
+      <section className="sectionMainValues">
+        <MainValuesCards />
+        <Image
+          className="backgroundCirclesImage"
+          src={purplesCircles}
+          alt="background design image"
+        />
+      </section>
     </div>
   );
 }

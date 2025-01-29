@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   gap: 48px;
-  margin-left: 128px;
-  margin-right: 128px;
+  padding-left: 128px;
+  padding-right: 128px;
 }
 
 @media (max-width: 900px) {

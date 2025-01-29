@@ -26,7 +26,7 @@ function Hero() {
           position: "relative",
           overflow: "hidden",
           zIndex: 1,
-          fontFamily: "Helvetica Sans-serif",
+          fontFamily: "Inter, sans-serif",
           "&::after": {
             content: '""',
             position: "absolute",

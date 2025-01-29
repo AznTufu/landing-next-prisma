@@ -1,5 +1,6 @@
 import React from "react";
 import "./MainValuesCards.css";
+
 import MainValueCard from "../MainValueCard/MainValueCard";
 
 function MainValuesCards() {
