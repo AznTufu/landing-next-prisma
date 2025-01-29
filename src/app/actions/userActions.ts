@@ -1,35 +1,42 @@
-'use server';
-import prisma from '@/frameworks/db';
-import { User } from '@prisma/client';
+"use server";
+import prisma from "@/frameworks/db";
+import { User } from "@prisma/client";
 
-export async function createUser(prevState: any, formData: FormData) {
-  const email = formData.get('email') as string;
-  const name = formData.get('name') as string;
-  const message = formData.get('message') as string;
+export async function createUser(
+  prevState: Record<string, unknown>,
+  formData: FormData
+) {
+  const email = formData.get("email") as string;
+  const name = formData.get("name") as string;
+  const message = formData.get("message") as string;
 
   if (!email || !name || !message) {
-    return { message: 'Tous les champs sont obligatoires.' };
+    return { message: "Tous les champs sont obligatoires." };
   }
 
   if (name.length < 2) {
-    return { message: 'Le nom doit comporter au moins 2 caractères.' };
+    return { message: "Le nom doit comporter au moins 2 caractères." };
   }
 
   if (email.length < 4) {
-    return { message: 'L\'email doit comporter au moins 4 caractères.' };
+    return { message: "L'email doit comporter au moins 4 caractères." };
   }
 
   if (message.length < 4) {
-    return { message: 'Le message doit comporter au moins 4 caractères.' };
+    return { message: "Le message doit comporter au moins 4 caractères." };
   }
 
   try {
     await prisma.user.create({
       data: { email, name, message },
     });
-    return { message: 'Utilisateur créé avec succès !' };
+    return { message: "Utilisateur créé avec succès !" };
   } catch (error) {
-    return { message: `Erreur lors de la création de l’utilisateur : ${(error as Error).message || error}` };
+    return {
+      message: `Erreur lors de la création de l’utilisateur : ${
+        (error as Error).message || error
+      }`,
+    };
   }
 }
 

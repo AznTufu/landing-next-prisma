@@ -54,3 +54,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# all prisma related files
+prisma/.env
+prisma/.env.development
+prisma/.env.test
+prisma/.env.production
+prisma/migration-lock
+prisma/client-deprecation-warning
+prisma/client-rust.log
+prisma/client-rust.json
+prisma/.prisma

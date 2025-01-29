@@ -15,6 +15,11 @@ function Hero() {
         your needs.
       </p>
       <Button
+        onClick={() => {
+          document.querySelector(".sectionContact")?.scrollIntoView({
+            behavior: "smooth",
+          });
+        }}
         sx={{
           backgroundColor: "transparent",
           color: "white",
