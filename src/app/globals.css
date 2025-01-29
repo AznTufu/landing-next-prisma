@@ -140,3 +140,13 @@
   padding-top: 64px;
   padding-bottom: 64px;
 }
+
+.logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: auto;
+  padding: 16px;
+  z-index: 3;
+}

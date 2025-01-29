@@ -6,10 +6,12 @@ import MainValuesCards from "@/components/MainValuesCards/MainValuesCards";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import TeamPresentation from "@/components/TeamPresentation/TeamPresentation";
 import UserForm from "@/components/UserFrom/UserForm";
+import ZhangParisotLogo from "../../public/img/ZhangParisotLogoBlackNoBg.webp";
 
 export default function Home() {
   return (
-    <div>
+    <div style={{ position: "relative" }}>
+      <Image className="logo" src={ZhangParisotLogo} alt="Logo of the agency" />
       <section className="sectionHero">
         <Hero />
       </section>
