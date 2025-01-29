@@ -46,17 +46,20 @@ const testimonialData = [
 function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
+  const [windowWidth, setWindowWidth] = useState(0);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+    setWindowWidth(window.innerWidth);
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
+    if (!isClient) return;
+
     let interval: NodeJS.Timeout;
     const slidesPerView = windowWidth <= 1000 ? 1 : windowWidth <= 1200 ? 2 : 3;
 
@@ -71,7 +74,9 @@ function Testimonials() {
     }
 
     return () => clearInterval(interval);
-  }, [isPaused, windowWidth]);
+  }, [isPaused, windowWidth, isClient]);
+
+  if (!isClient) return null;
 
   const slideWidth =
     windowWidth <= 1000 ? 100 : windowWidth <= 1200 ? 50 : 33.33;

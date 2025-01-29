@@ -4,6 +4,7 @@ import Image from "next/image";
 import AdvantagesCards from "@/components/AdvantagesCards/AdvantagesCards";
 import MainValuesCards from "@/components/MainValuesCards/MainValuesCards";
 import Testimonials from "@/components/Testimonials/Testimonials";
+import TeamPresentation from "@/components/TeamPresentation/TeamPresentation";
 
 export default function Home() {
   return (
@@ -11,11 +12,9 @@ export default function Home() {
       <section className="sectionHero">
         <Hero />
       </section>
-
       <section className="sectionAdvantages">
         <AdvantagesCards />
       </section>
-
       <section className="sectionMainValues">
         <MainValuesCards />
         <Image
@@ -26,7 +25,13 @@ export default function Home() {
       </section>
 
       <section className="sectionTestimonials">
+        <h2>Testimonials</h2>
         <Testimonials />
+      </section>
+
+      <section className="sectionTeamPresentation">
+        <h2>Team Presentation</h2>
+        <TeamPresentation />
       </section>
     </div>
   );
