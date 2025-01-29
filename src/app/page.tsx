@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+import UserForm from '@/app/components/userForm';
+
+export default function Home() {
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Create User</h1>
+      <UserForm />
+=======
 import Hero from "@/components/Hero/Hero";
 import purplesCircles from "../../public/img/purpulesCircles.webp";
 import Image from "next/image";
@@ -33,6 +42,7 @@ export default function Home() {
         <h2>Team Presentation</h2>
         <TeamPresentation />
       </section>
+>>>>>>> 4c4384b8ac115ceab300a8db5778013d2d268b2e
     </div>
   );
 }
