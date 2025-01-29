@@ -6,6 +6,13 @@
   padding-right: 128px;
 }
 
+@media (max-width: 1200px) {
+  .mainValuesCards {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
 @media (max-width: 900px) {
   .mainValuesCards {
     flex-direction: column;
