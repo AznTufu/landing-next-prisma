@@ -89,31 +89,68 @@ git clone https://github.com/yourusername/landing-next-prisma.git
 cd landing-next-prisma
 npm install
 ```
+3. Migration
 
-3. Run the development server
+```bash
+npx prisma migrate dev --name init
+```
+
+4. Generate admin
+
+```bash
+npx prisma db seed
+```
+
+5. Run the development server
 
 ```bash
 npm run dev
 ```
 
-4. Open http://localhost:3000 to view the project.
+6. Open http://localhost:3000 to view the project.
 
 ## Project Structure
 
 ```bash
 landing-next-prisma/
 ├── src/
-│   ├── components/
-│   │   ├── Hero/
-│   │   ├── Testimonials/
-│   │   ├── AdvantageCard/
-│   │   └── TeamPresentation/
 │   ├── app/
+│   │   ├── (admin)/
+│   │   │   ├── login/
+│   │   │   │   └── page.tsx
+│   │   │   └── dashboard/
+│   │   │       └── page.tsx
+│   │   ├── actions/
+│   │   │   └── adminActions.ts
+│   │   └── layout.tsx
+│   ├── lib/
+│   │   └── auth.ts
+│   ├── frameworks/
+│   │   └── db.ts
+│   ├── components/
+│   │   ├── ui/
+│   │   │   └── button.tsx
+│   │   └── admin/
+│   │       └── LoginForm.tsx
 │   └── styles/
+│       └── globals.css
+├── prisma/
+│   ├── schema.prisma
+│   └── dev.db
 ├── public/
 │   └── img/
-└── package.json
+│   └── images/
+├── .env
+├── package.json
+├── next.config.js
+└── tailwind.config.ts
 ```
+## Dashboard admin
+
+https://landing-next-prisma.vercel.app/login
+
+username: admin
+password: password
 
 ## Authors
 
