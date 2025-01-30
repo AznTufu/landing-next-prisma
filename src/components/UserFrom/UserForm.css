@@ -1,0 +1,9 @@
+.userForm {
+  padding: 32px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.messageError {
+  color: #fc6d36;
+  padding-top: 4px;
+}

@@ -1,4 +1,3 @@
-import UserForm from '@/app/components/userForm';
 import Hero from "@/components/Hero/Hero";
 import purplesCircles from "../../public/img/purpulesCircles.webp";
 import Image from "next/image";
@@ -6,10 +5,13 @@ import AdvantagesCards from "@/components/AdvantagesCards/AdvantagesCards";
 import MainValuesCards from "@/components/MainValuesCards/MainValuesCards";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import TeamPresentation from "@/components/TeamPresentation/TeamPresentation";
+import UserForm from "@/components/UserFrom/UserForm";
+import ZhangParisotLogo from "../../public/img/ZhangParisotLogoBlackNoBg.webp";
 
 export default function Home() {
   return (
-    <div>
+    <div style={{ position: "relative" }}>
+      <Image className="logo" src={ZhangParisotLogo} alt="Logo of the agency" />
       <section className="sectionHero">
         <Hero />
       </section>
@@ -34,10 +36,11 @@ export default function Home() {
         <h2>Team Presentation</h2>
         <TeamPresentation />
       </section>
-      <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Create User</h1>
+
+      <section className="sectionContact">
+        <h2>Contact Us</h2>
         <UserForm />
-      </div>
+      </section>
     </div>
   );
 }
