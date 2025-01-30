@@ -1,17 +1,25 @@
-import { getTag, updateTag, deleteTag } from '@/app/actions/tagActions';
-import { notFound, redirect } from 'next/navigation';
-import { FaTrash } from 'react-icons/fa';
+import { getTag, deleteTag } from "@/app/actions/tagActions";
+import { notFound, redirect } from "next/navigation";
+import { FaTrash } from "react-icons/fa";
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const resolvedParams = await params;
   const tag = await getTag(resolvedParams.id);
   if (!tag) {
-    return { title: 'Tag non trouvé' };
+    return { title: "Tag non trouvé" };
   }
   return { title: `Détails du tag : ${tag.name}` };
 }
 
-export default async function TagDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function TagDetailsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const resolvedParams = await params;
   const tag = await getTag(resolvedParams.id);
 
@@ -20,9 +28,9 @@ export default async function TagDetailsPage({ params }: { params: Promise<{ id:
   }
 
   const handleDelete = async () => {
-    'use server';
+    "use server";
     await deleteTag(resolvedParams.id);
-    redirect('/dashboard');
+    redirect("/dashboard");
   };
 
   return (
@@ -35,14 +43,19 @@ export default async function TagDetailsPage({ params }: { params: Promise<{ id:
         <strong>Nom :</strong> {tag.name}
       </div>
       <div>
-        <strong>Créé le :</strong> {new Date(tag.createdAt).toLocaleString('fr-FR')}
+        <strong>Créé le :</strong>{" "}
+        {new Date(tag.createdAt).toLocaleString("fr-FR")}
       </div>
       <div>
-        <strong>Mis à jour le :</strong> {new Date(tag.updatedAt).toLocaleString('fr-FR')}
+        <strong>Mis à jour le :</strong>{" "}
+        {new Date(tag.updatedAt).toLocaleString("fr-FR")}
       </div>
       <form action={handleDelete}>
-        <button type="submit" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-          <FaTrash style={{ color: 'red' }} />
+        <button
+          type="submit"
+          style={{ background: "none", border: "none", cursor: "pointer" }}
+        >
+          <FaTrash style={{ color: "red" }} />
         </button>
       </form>
     </div>

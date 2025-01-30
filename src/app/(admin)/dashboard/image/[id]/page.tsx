@@ -16,7 +16,7 @@ export default async function ImageDetailsPage({
 
   return (
     <div className="p-6 bg-white shadow-lg rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">Détails de l'image</h1>
+      <h1 className="text-2xl font-bold mb-4">Détails de l&apos;image</h1>
       <div className="space-y-4">
         <p>
           <strong>Nom du fichier :</strong> {image.filename}
