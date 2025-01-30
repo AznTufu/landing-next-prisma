@@ -2,12 +2,12 @@ import { Button } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import { Tag } from "@prisma/client";
-
+import placeholderImage from "@/../public/images/cover-illustration.png"
 import "./ProjectCard.css";
 
 interface ProjectCardProps {
   name: string;
-  imageUrl: string;
+  imageUrl?: string;
   projectId: string;
   tags: Tag[];
 }
@@ -26,7 +26,7 @@ function ProjectCard({ name, imageUrl, projectId, tags }: ProjectCardProps) {
       )}
       <div className="imageContainer">
         <Image
-          src={imageUrl}
+          src={imageUrl || placeholderImage}
           alt={name}
           width={400}
           height={300}

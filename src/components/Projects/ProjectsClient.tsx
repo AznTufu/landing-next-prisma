@@ -110,7 +110,7 @@ function ProjectsClient({ projects, tags }: ProjectsClientProps) {
           <ProjectCard
             key={project.id}
             name={project.title}
-            imageUrl={project.images[0].filePath}
+            imageUrl={project.images[0]?.filePath || undefined}
             projectId={project.id}
             tags={project.tags}
           />
