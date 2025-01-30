@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { getImage, updateImage } from '@/app/actions/imageActions';
 import { getAllProjects } from '@/app/actions/projectActions';
@@ -7,7 +7,11 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, use } from 'react';
 import { default as NextImage } from 'next/image';
 
-export default function EditImagePage({ params }: { params: Promise<{ id: string }> }) {
+export default function EditImagePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const router = useRouter();
   const [image, setImage] = useState<Image | null>(null);
   const [projectId, setProjectId] = useState('');
@@ -37,7 +41,7 @@ export default function EditImagePage({ params }: { params: Promise<{ id: string
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
-      <h1 className="text-xl font-bold mb-4">Modifier l'image</h1>
+      <h1 className="text-xl font-bold mb-4">Modifier l&apos;image</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {image && (
           <div>
@@ -80,7 +84,9 @@ export default function EditImagePage({ params }: { params: Promise<{ id: string
           Mettre à jour
         </button>
         {projects.length === 0 && (
-          <p className="text-red-500">Aucun projet disponible. Créez d'abord un projet.</p>
+          <p className="text-red-500">
+            Aucun projet disponible. Créez d&apos;abord un projet.
+          </p>
         )}
       </form>
     </div>

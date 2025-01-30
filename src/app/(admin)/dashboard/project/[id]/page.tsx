@@ -1,8 +1,12 @@
-import { getProject } from '@/app/actions/projectActions';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import { getProject } from "@/app/actions/projectActions";
+import { notFound } from "next/navigation";
+import Image from "next/image";
 
-export default async function ProjectDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProjectDetailsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const resolvedParams = await params;
   const project = await getProject(resolvedParams.id);
   if (!project) {
@@ -22,11 +26,11 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
       </div>
       <div className="mb-2">
         <strong>Créé le : </strong>
-        {new Date(project.createdAt).toLocaleString('fr-FR')}
+        {new Date(project.createdAt).toLocaleString("fr-FR")}
       </div>
       <div className="mb-2">
         <strong>Mis à jour le : </strong>
-        {new Date(project.updatedAt).toLocaleString('fr-FR')}
+        {new Date(project.updatedAt).toLocaleString("fr-FR")}
       </div>
       <div className="mb-2">
         <strong>Tags :</strong>
@@ -45,18 +49,17 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         {project.images && project.images.length > 0 ? (
           <div>
             {project.images.map((img) => (
-                <Image
-                  key={img.id}
-                  src={img.filePath}
-                  alt={img.filename}
-                  className="mt-2 max-w-full rounded-lg w-auto h-auto"
-                  width={250}
-                  height={250}
-                  priority
-                />
+              <Image
+                key={img.id}
+                src={img.filePath}
+                alt={img.filename}
+                className="mt-2 max-w-full rounded-lg w-auto h-auto"
+                width={250}
+                height={250}
+                priority
+              />
             ))}
           </div>
-
         ) : (
           <p>Aucune image</p>
         )}

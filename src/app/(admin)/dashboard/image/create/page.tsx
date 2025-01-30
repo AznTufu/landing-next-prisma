@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { createImage } from '@/app/actions/imageActions';
-import { getAllProjects } from '@/app/actions/projectActions';
-import { Project } from '@prisma/client';
-import { useRouter } from 'next/navigation';
-import { useState, ChangeEvent, useEffect } from 'react';
+import { createImage } from "@/app/actions/imageActions";
+import { getAllProjects } from "@/app/actions/projectActions";
+import { Project } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import { useState, ChangeEvent, useEffect } from "react";
 
 export default function CreateImagePage() {
   const router = useRouter();
-  const [filename, setFilename] = useState('');
-  const [projectId, setProjectId] = useState('');
+  const [filename, setFilename] = useState("");
+  const [projectId, setProjectId] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
 
@@ -37,7 +37,7 @@ export default function CreateImagePage() {
     reader.onload = async () => {
       const dataBase64 = reader.result as string;
       await createImage(filename, dataBase64, projectId);
-      router.push('/dashboard');
+      router.push("/dashboard");
     };
     reader.readAsDataURL(file);
   };
@@ -88,7 +88,9 @@ export default function CreateImagePage() {
           Enregistrer
         </button>
         {projects.length === 0 && (
-          <p className="text-red-500">Aucun projet disponible. Créez d'abord un projet.</p>
+          <p className="text-red-500">
+            Aucun projet disponible. Créez d&apos;abord un projet.
+          </p>
         )}
       </form>
     </div>

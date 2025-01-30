@@ -13,13 +13,13 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 const formatDate = (date: Date) => {
-  return new Date(date).toLocaleString('fr-FR', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+  return new Date(date).toLocaleString("fr-FR", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
   });
 };
 
@@ -40,23 +40,26 @@ export default async function DashboardPage() {
     redirect('/login');
   }
 
-  const handleDelete = async (type: 'project' | 'image' | 'tag' | 'user', id: string) => {
-    'use server';
+  const handleDelete = async (
+    type: "project" | "image" | "tag" | "user",
+    id: string
+  ) => {
+    "use server";
     switch (type) {
-      case 'project':
+      case "project":
         await deleteProject(id);
         break;
-      case 'image':
+      case "image":
         await deleteImage(id);
         break;
-      case 'tag':
+      case "tag":
         await deleteTag(id);
         break;
-      case 'user':
+      case "user":
         await deleteUser(id);
         break;
     }
-    revalidatePath('/dashboard');
+    revalidatePath("/dashboard");
   };
 
   const handleLogout = async () => {
@@ -117,7 +120,7 @@ export default async function DashboardPage() {
                   {tag.name}
                 </Link>
                 <Link href={`/dashboard/tag/edit/${tag.id}`}>Modifier</Link>
-                <form action={handleDelete.bind(null, 'tag', tag.id)}>
+                <form action={handleDelete.bind(null, "tag", tag.id)}>
                   <button type="submit">Supprimer</button>
                 </form>
               </li>
@@ -130,17 +133,23 @@ export default async function DashboardPage() {
 
       <div className="max-w-xl mx-auto p-4">
         <h1 className="text-xl font-bold mb-4">Liste des images</h1>
-        <Link href="/dashboard/image/create" className="text-blue-500 underline mb-2 inline-block">
+        <Link
+          href="/dashboard/image/create"
+          className="text-blue-500 underline mb-2 inline-block"
+        >
           Créer une nouvelle image
         </Link>
         <ul className="space-y-2">
           {images.map((img) => (
             <li key={img.id} className="border p-2 rounded">
-              <Link href={`/dashboard/image/${img.id}`} className="text-blue-600 underline">
+              <Link
+                href={`/dashboard/image/${img.id}`}
+                className="text-blue-600 underline"
+              >
                 {img.filename}
               </Link>
               <Link href={`/dashboard/image/edit/${img.id}`}>Modifier</Link>
-              <form action={handleDelete.bind(null, 'image', img.id)}>
+              <form action={handleDelete.bind(null, "image", img.id)}>
                 <button type="submit">Supprimer</button>
               </form>
             </li>
@@ -150,13 +159,19 @@ export default async function DashboardPage() {
 
       <div className="max-w-xl mx-auto p-4">
         <h1 className="text-xl font-bold mb-4">Liste des projets</h1>
-        <Link href="/dashboard/project/create" className="text-blue-500 underline mb-2 inline-block">
+        <Link
+          href="/dashboard/project/create"
+          className="text-blue-500 underline mb-2 inline-block"
+        >
           Créer un nouveau projet
         </Link>
         <ul className="space-y-2">
           {projects.map((proj) => (
             <li key={proj.id} className="border p-2 rounded">
-              <Link href={`/dashboard/project/${proj.id}`} className="text-blue-600 underline">
+              <Link
+                href={`/dashboard/project/${proj.id}`}
+                className="text-blue-600 underline"
+              >
                 {proj.title}
               </Link>
               <div>{proj.description}</div>
@@ -176,17 +191,17 @@ export default async function DashboardPage() {
               <div className="mt-2">
                 <strong>Images :</strong>
                 {proj.images && proj.images.length > 0 ? (
-                  <div className="list-disc ml-5"> 
+                  <div className="list-disc ml-5">
                     {proj.images.map((img) => (
                       <NextImage
-                          key={img.id}
-                          src={img.filePath}
-                          alt={img.filename}
-                          className="mt-2 max-w-full rounded-lg w-auto h-auto"
-                          width={250}
-                          height={250}
-                          priority
-                        />
+                        key={img.id}
+                        src={img.filePath}
+                        alt={img.filename}
+                        className="mt-2 max-w-full rounded-lg w-auto h-auto"
+                        width={250}
+                        height={250}
+                        priority
+                      />
                     ))}
                   </div>
                 ) : (
@@ -195,7 +210,7 @@ export default async function DashboardPage() {
               </div>
 
               <Link href={`/dashboard/project/edit/${proj.id}`}>Modifier</Link>
-              <form action={handleDelete.bind(null, 'project', proj.id)}>
+              <form action={handleDelete.bind(null, "project", proj.id)}>
                 <button type="submit">Supprimer</button>
               </form>
             </li>

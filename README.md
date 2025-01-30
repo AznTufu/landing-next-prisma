@@ -18,6 +18,41 @@ A modern, responsive landing page for a web development agency built with Next.j
 - Material-UI
 - Prisma
 
+## Performance report
+
+![audit1](https://github.com/user-attachments/assets/e577c46d-c2e5-4059-8576-9d996b78a6cb)
+
+
+
+![audit2](https://github.com/user-attachments/assets/a75144c5-5df7-4564-936e-2b28e22dbd3d)
+
+
+
+![audit3](https://github.com/user-attachments/assets/fbb98457-570f-4391-b5e9-90e3667ad43e)
+
+See: https://pagespeed.web.dev/analysis/https-landing-next-prisma-vercel-app/c62zg2l6vj?form_factor=desktop
+
+![audit4](https://github.com/user-attachments/assets/e6b0bd4f-c63b-4b02-b711-43c86d5cc92c)
+
+See: https://pagespeed.web.dev/analysis/https-landing-next-prisma-vercel-app/c62zg2l6vj?form_factor=mobile
+
+![audit5](https://github.com/user-attachments/assets/b2919d6d-20b7-427e-ab34-e863c5c8de6d)
+
+
+![audit6](https://github.com/user-attachments/assets/aa912629-eacc-4aa9-8525-ad72dc560c46)
+
+### Scrore Summary
+
+| Metric                 | Mobile  | Desktop |
+|------------------------|---------|---------|
+| **LCP** (Largest Contentful Paint) | 23/25  | 25/25  |
+| **CLS** (Cumulative Layout Shift)  | 25/25  | 25/25  |
+| **FCP** (First Contentful Paint)   | 10     | 10     |
+| **TBT** (Total Blocking Time)      | 30     | 30     |
+| **Speed Index**                    | ~0.8   | ~0.8   |
+| **Total Blocking Time**             | ~600ms | ~100ms |
+
+
 ## Getting Started
 
 ### Prerequisites
