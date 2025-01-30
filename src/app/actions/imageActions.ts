@@ -7,14 +7,16 @@ import fs from 'fs';
 export async function createImage(filename: string, dataBase64: string, projectId: string) {
   const buffer = Buffer.from(dataBase64.split(',')[1], 'base64');
 
-  const publicFolder = path.join(process.cwd(), 'public', 'images');
-  const filePath = `/images/${filename}`;
+  const isProd = process.env.NODE_ENV === 'production';
+  const folder = isProd ? '/tmp' : path.join(process.cwd(), 'public', 'images');
+  const filePath = `${isProd ? '' : '/images/'}${filename}`;
 
-  if (!fs.existsSync(publicFolder)) {
-    fs.mkdirSync(publicFolder, { recursive: true });
+  if (!fs.existsSync(folder)) {
+    fs.mkdirSync(folder, { recursive: true });
   }
 
-  fs.writeFileSync(path.join(publicFolder, filename), buffer);
+  const fullPath = path.join(folder, filename);
+  fs.writeFileSync(fullPath, buffer);
 
   return await prisma.image.create({
     data: {
