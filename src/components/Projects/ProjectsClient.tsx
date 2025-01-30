@@ -1,34 +1,122 @@
 "use client";
 
 import React, { useState } from "react";
-import { Project as PrismaProject } from "@prisma/client";
-import { Button } from "@mui/material";
+import { Project as PrismaProject, Tag } from "@prisma/client";
+import {
+  Button,
+  FormControl,
+  Chip,
+  Autocomplete,
+  TextField,
+} from "@mui/material";
 import ProjectCard from "../ProjectCard/ProjectCard";
 
 interface Project extends PrismaProject {
   images: { filePath: string }[];
+  tags: Tag[];
 }
 
-function ProjectsClient({ projects }: { projects: Project[] }) {
+interface ProjectsClientProps {
+  projects: Project[];
+  tags: Tag[];
+}
+
+function ProjectsClient({ projects, tags }: ProjectsClientProps) {
   const [visibleCount, setVisibleCount] = useState(2);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   const handleShowMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 2, projects.length));
+    setVisibleCount((prev) => Math.min(prev + 2, filteredProjects.length));
   };
+
+  const handleTagChange = (_event: React.SyntheticEvent, newValue: Tag[]) => {
+    setSelectedTags(newValue);
+    setVisibleCount(2);
+  };
+
+  const filteredProjects =
+    selectedTags.length === 0
+      ? projects
+      : projects.filter((project) =>
+          project.tags.some((tag) => selectedTags.find((t) => t.id === tag.id))
+        );
 
   return (
     <div className="projectsContainer">
+      <FormControl sx={{ minWidth: 200, marginBottom: 4 }}>
+        <Autocomplete
+          multiple
+          options={tags}
+          getOptionLabel={(option) => option.name}
+          value={selectedTags}
+          onChange={handleTagChange}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Filter by Tags"
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-root": {
+                  color: "white",
+                  "& fieldset": {
+                    borderColor: "white",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#FC6D36",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#FC6D36",
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                  "&.Mui-focused": {
+                    color: "#FC6D36",
+                  },
+                },
+              }}
+            />
+          )}
+          renderTags={(value, getTagProps) =>
+            value.map((option, index) => (
+              <Chip
+                {...getTagProps({ index })}
+                key={option.id}
+                label={option.name}
+                sx={{
+                  color: "white",
+                  backgroundColor: "#FC6D36",
+                  "& .MuiChip-deleteIcon": {
+                    color: "white",
+                    "&:hover": {
+                      color: "rgba(255, 255, 255, 0.7)",
+                    },
+                  },
+                }}
+              />
+            ))
+          }
+          sx={{
+            minWidth: "300px",
+            "& .MuiAutocomplete-clearIndicator, & .MuiAutocomplete-popupIndicator":
+              {
+                color: "white",
+              },
+          }}
+        />
+      </FormControl>
       <div className="projectsGrid">
-        {projects.slice(0, visibleCount).map((project) => (
+        {filteredProjects.slice(0, visibleCount).map((project) => (
           <ProjectCard
             key={project.id}
             name={project.title}
             imageUrl={project.images[0].filePath}
             projectId={project.id}
+            tags={project.tags}
           />
         ))}
       </div>
-      {visibleCount < projects.length && (
+      {visibleCount < filteredProjects.length && (
         <Button
           onClick={handleShowMore}
           sx={{

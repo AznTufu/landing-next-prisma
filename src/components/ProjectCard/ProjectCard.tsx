@@ -1,17 +1,29 @@
 import { Button } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+import { Tag } from "@prisma/client";
+
 import "./ProjectCard.css";
 
 interface ProjectCardProps {
   name: string;
   imageUrl: string;
   projectId: string;
+  tags: Tag[];
 }
 
-function ProjectCard({ name, imageUrl, projectId }: ProjectCardProps) {
+function ProjectCard({ name, imageUrl, projectId, tags }: ProjectCardProps) {
   return (
     <div className="projectCard">
+      {tags && tags.length > 0 && (
+        <div className="projectCardTags">
+          {tags.map((tag) => (
+            <span key={tag.id} className="tag">
+              {tag.name}
+            </span>
+          ))}
+        </div>
+      )}
       <div className="imageContainer">
         <Image
           src={imageUrl}

@@ -6,6 +6,7 @@
   background-color: #1e1e1e;
   border-radius: 8px;
   overflow: hidden;
+  position: relative;
 }
 
 .imageContainer {
@@ -42,4 +43,16 @@
   font-weight: 600;
   color: white;
   font-family: "Inter", sans-serif;
+}
+
+.projectCardTags {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #fc6d36;
+  background-color: #fc6e3660;
+  padding: 8px;
+  border-radius: 16px;
+  width: fit-content;
+  z-index: 3;
 }
