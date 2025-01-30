@@ -26,8 +26,8 @@ export default function EditTagPage({ params }: { params: Promise<{ id: string }
   };
 
   return (
-    <div>
-      <h1>Modifier le tag</h1>
+    <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
+      <h1 className="text-xl font-bold mb-4">Modifier le tag</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Nom du tag :</label>

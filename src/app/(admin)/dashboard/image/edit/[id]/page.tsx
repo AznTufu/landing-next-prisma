@@ -2,69 +2,55 @@
 
 import { getImage, updateImage } from '@/app/actions/imageActions';
 import { getAllProjects } from '@/app/actions/projectActions';
-import { Project } from '@prisma/client';
+import { Project, Image } from '@prisma/client';
 import { useRouter } from 'next/navigation';
-import { useState, ChangeEvent, useEffect, use } from 'react';
+import { useState, useEffect, use } from 'react';
+import { default as NextImage } from 'next/image';
 
 export default function EditImagePage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
-  const [filename, setFilename] = useState('');
+  const [image, setImage] = useState<Image | null>(null);
   const [projectId, setProjectId] = useState('');
-  const [file, setFile] = useState<File | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
-
   const resolvedParams = use(params);
 
   useEffect(() => {
     const fetchData = async () => {
-      const image = await getImage(resolvedParams.id);
-      const projects = await getAllProjects();
-      if (image) {
-        setFilename(image.filename);
-        setProjectId(image.projectId);
+      const imageData = await getImage(resolvedParams.id);
+      const projectsData = await getAllProjects();
+      if (imageData) {
+        setImage(imageData);
+        setProjectId(imageData.projectId || '');
       }
-      setProjects(projects);
+      setProjects(projectsData);
     };
     fetchData();
   }, [resolvedParams.id]);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const selectedFile = e.target.files[0];
-      setFile(selectedFile);
-      setFilename(selectedFile.name);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file || !projectId) return;
+    if (!image || !projectId) return;
 
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const buffer = Buffer.from(reader.result as ArrayBuffer);
-      await updateImage(params.id, filename, buffer);
-      router.push('/dashboard');
-    };
-    reader.readAsArrayBuffer(file);
+    await updateImage(resolvedParams.id, image.filename, image.filePath, projectId);
+    router.push('/dashboard');
   };
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
       <h1 className="text-xl font-bold mb-4">Modifier l'image</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block font-medium" htmlFor="file">
-            Fichier image :
-          </label>
-          <input
-            type="file"
-            id="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="block w-full p-2 border border-gray-300 rounded-md"
-          />
-        </div>
+        {image && (
+          <div>
+            <NextImage
+              src={image.filePath}
+              alt={image.filename}
+              className="mt-2 max-w-full rounded-lg w-auto h-auto"
+              width={500}
+              height={500}
+              priority
+            />
+          </div>
+        )}
         <div>
           <label className="block font-medium" htmlFor="projectId">
             Projet associé :
@@ -89,7 +75,7 @@ export default function EditImagePage({ params }: { params: Promise<{ id: string
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          disabled={!file || !projectId || projects.length === 0}
+          disabled={!projectId || projects.length === 0}
         >
           Mettre à jour
         </button>

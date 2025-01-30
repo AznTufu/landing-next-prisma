@@ -26,8 +26,8 @@ export default async function TagDetailsPage({ params }: { params: Promise<{ id:
   };
 
   return (
-    <div>
-      <h1>Détails du tag : {tag.name}</h1>
+    <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
+      <h1 className="text-xl font-bold mb-4">Détails du tag : {tag.name}</h1>
       <div>
         <strong>ID :</strong> {tag.id}
       </div>

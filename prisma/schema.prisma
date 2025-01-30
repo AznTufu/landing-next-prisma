@@ -48,3 +48,10 @@ model User {
   message   String
   createdAt DateTime @default(now())
 }
+
+model Admin {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
