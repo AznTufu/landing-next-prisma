@@ -89,25 +89,46 @@ git clone https://github.com/yourusername/landing-next-prisma.git
 cd landing-next-prisma
 npm install
 ```
-3. Migration
+
+3. Create a .env file in the root
+```bash
+DATABASE_URL="file:./dev.db"
+JWT_SECRET=Secret
+```
+4. In prisma/schema.prisma edit
+```bash
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+to 
+```bash
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+```
+
+5. Migration
 
 ```bash
 npx prisma migrate dev --name init
 ```
 
-4. Generate admin
+6. Generate admin
 
 ```bash
 npx prisma db seed
 ```
 
-5. Run the development server
+7. Run the development server
 
 ```bash
 npm run dev
 ```
 
-6. Open http://localhost:3000 to view the project.
+8. Open http://localhost:3000 to view the project.
 
 ## Project Structure
 
