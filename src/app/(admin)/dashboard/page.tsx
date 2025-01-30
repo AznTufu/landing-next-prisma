@@ -1,11 +1,12 @@
 import { getAllUsers, deleteUser } from '@/app/actions/userActions';
 import { getAllTags, deleteTag } from '@/app/actions/tagActions';
 import { getAllImages, deleteImage } from '@/app/actions/imageActions';
-import { getAllProjects, deleteProject } from '@/app/actions/projectActions';
-import { Project, Image, Tag, User  } from '@prisma/client';
+import { getAllProjects, deleteProject, ProjectWithRelations } from '@/app/actions/projectActions';
+import { Image, Tag, User } from '@prisma/client';
 import { FaTrash } from 'react-icons/fa';
 import { revalidatePath } from 'next/cache';
 import Link from 'next/link';
+import { default as NextImage } from 'next/image';
 
 const formatDate = (date: Date) => {
   return new Date(date).toLocaleString('fr-FR', {
@@ -18,13 +19,13 @@ const formatDate = (date: Date) => {
   });
 };
 
-export default async function UsersPage() {
+export default async function DashboardPage() {
   const users: User[] = await getAllUsers();
   const tags: Tag[] = await getAllTags();
   const images: Image[] = await getAllImages();
-  const projects: Project[] = await getAllProjects();
+  const projects: ProjectWithRelations[] = await getAllProjects();
 
-  const handleDelete = async (type: 'project' | 'image' |'tag' | 'user', id: string) => {
+  const handleDelete = async (type: 'project' | 'image' | 'tag' | 'user', id: string) => {
     'use server';
     switch (type) {
       case 'project':
@@ -70,6 +71,7 @@ export default async function UsersPage() {
           <p>No users found</p>
         )}
       </div>
+
       <div className="max-w-xl mx-auto p-4">
         <h1 className="text-xl font-bold mb-4">Liste des tags</h1>
         <Link href="/dashboard/tag/create">Créer un nouveau tag</Link>
@@ -93,6 +95,7 @@ export default async function UsersPage() {
           <p>Aucun tag trouvé</p>
         )}
       </div>
+
       <div className="max-w-xl mx-auto p-4">
         <h1 className="text-xl font-bold mb-4">Liste des images</h1>
         <Link href="/dashboard/image/create" className="text-blue-500 underline mb-2 inline-block">
@@ -112,6 +115,7 @@ export default async function UsersPage() {
           ))}
         </ul>
       </div>
+
       <div className="max-w-xl mx-auto p-4">
         <h1 className="text-xl font-bold mb-4">Liste des projets</h1>
         <Link href="/dashboard/project/create" className="text-blue-500 underline mb-2 inline-block">
@@ -123,6 +127,45 @@ export default async function UsersPage() {
               <Link href={`/dashboard/project/${proj.id}`} className="text-blue-600 underline">
                 {proj.title}
               </Link>
+              <div>{proj.description}</div>
+
+              {/* Affichage des tags */}
+              <div className="mt-2">
+                <strong>Tags :</strong>
+                {proj.tags && proj.tags.length > 0 ? (
+                  <ul className="list-disc ml-5">
+                    {proj.tags.map((tag) => (
+                      <li key={tag.id}>{tag.name}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>Aucun tag</p>
+                )}
+              </div>
+
+              {/* Affichage des images */}
+              <div className="mt-2">
+                <strong>Images :</strong>
+                {proj.images && proj.images.length > 0 ? (
+                  <div className="list-disc ml-5"> 
+                    {proj.images.map((img) => (
+                      <NextImage
+                          key={img.id}
+                          src={img.filePath}
+                          alt={img.filename}
+                          className="mt-2 max-w-full rounded-lg w-auto h-auto"
+                          width={250}
+                          height={250}
+                          priority
+                        />
+                    ))}
+                  </div>
+
+                ) : (
+                  <p>Aucune image</p>
+                )}
+              </div>
+
               <Link href={`/dashboard/project/edit/${proj.id}`}>Modifier</Link>
               <form action={handleDelete.bind(null, 'project', proj.id)}>
                 <button type="submit">Supprimer</button>

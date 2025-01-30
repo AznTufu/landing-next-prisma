@@ -1,5 +1,6 @@
 import { getProject } from '@/app/actions/projectActions';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 export default async function ProjectDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -26,6 +27,39 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
       <div className="mb-2">
         <strong>Mis à jour le : </strong>
         {new Date(project.updatedAt).toLocaleString('fr-FR')}
+      </div>
+      <div className="mb-2">
+        <strong>Tags :</strong>
+        {project.tags && project.tags.length > 0 ? (
+          <ul>
+            {project.tags.map((tag) => (
+              <li key={tag.id}>{tag.name}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>Aucun tag</p>
+        )}
+      </div>
+      <div className="mb-2">
+        <strong>Images :</strong>
+        {project.images && project.images.length > 0 ? (
+          <div>
+            {project.images.map((img) => (
+                <Image
+                  key={img.id}
+                  src={img.filePath}
+                  alt={img.filename}
+                  className="mt-2 max-w-full rounded-lg w-auto h-auto"
+                  width={250}
+                  height={250}
+                  priority
+                />
+            ))}
+          </div>
+
+        ) : (
+          <p>Aucune image</p>
+        )}
       </div>
     </div>
   );

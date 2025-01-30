@@ -1,10 +1,11 @@
 'use server';
 import prisma from '@/frameworks/db';
-import { Project, Prisma } from '@prisma/client';
+import { Project, Image, Tag } from '@prisma/client';
 
-type ProjectWithTags = Prisma.ProjectGetPayload<{
-  include: { tags: true };
-}>;
+export type ProjectWithRelations = Project & {
+  images: Image[];
+  tags: Tag[];
+};
 
 export async function createProject(title: string, description: string, tagIds: string[]) {
   return await prisma.project.create({
@@ -16,16 +17,19 @@ export async function createProject(title: string, description: string, tagIds: 
   });
 }
 
-export async function getAllProjects(): Promise<Project[]> {
+export async function getAllProjects(): Promise<ProjectWithRelations[]> {
   return await prisma.project.findMany({
     include: { tags: true, images: true },
   });
 }
 
-export async function getProject(projectId: string): Promise<ProjectWithTags | null> {
-  return await prisma.project.findUnique({
+export async function getProject(projectId: string): Promise<ProjectWithRelations | null> {
+  return prisma.project.findUnique({
     where: { id: projectId },
-    include: { tags: true, images: true },
+    include: {
+      tags: true,
+      images: true,
+    },
   });
 }
 
