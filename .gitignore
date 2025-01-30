@@ -57,9 +57,9 @@ yarn-error.log*
 next-env.d.ts
 
 # Prisma
-/prisma/migrations
-/prisma/*.db
-/prisma/*.db-journal
+# /prisma/migrations
+# /prisma/*.db
+# /prisma/*.db-journal
 
 # IDE/Editor
 .idea
@@ -83,12 +83,12 @@ next-env.d.ts
 .next/trace
 .next/types
 # all prisma related files
-prisma/.env
-prisma/.env.development
-prisma/.env.test
-prisma/.env.production
-prisma/migration-lock
-prisma/client-deprecation-warning
-prisma/client-rust.log
-prisma/client-rust.json
-prisma/.prisma
+# prisma/.env
+# prisma/.env.development
+# prisma/.env.test
+# prisma/.env.production
+# prisma/migration-lock
+# prisma/client-deprecation-warning
+# prisma/client-rust.log
+# prisma/client-rust.json
+# prisma/.prisma
