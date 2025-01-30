@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials/Testimonials";
 import TeamPresentation from "@/components/TeamPresentation/TeamPresentation";
 import UserForm from "@/components/UserFrom/UserForm";
 import ZhangParisotLogo from "../../public/img/ZhangParisotLogoBlackNoBg.webp";
+import Projects from "@/components/Projects/Projects";
 
 export default function Home() {
   return (
@@ -25,6 +26,10 @@ export default function Home() {
           src={purplesCircles}
           alt="background design image"
         />
+      </section>
+
+      <section>
+        <Projects />
       </section>
 
       <section className="sectionTestimonials">

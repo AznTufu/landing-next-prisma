@@ -13,16 +13,18 @@ const formatDate = (date: Date) => {
   });
 };
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const user = await getUser(params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const user = await getUser(resolvedParams.id);
   if (!user) {
     return { title: 'Utilisateur non trouvé' };
   }
   return { title: `Profil de ${user.name}` };
 }
 
-export default async function UserPage({ params }: { params: { id: string } }) {
-  const user = await getUser(params.id);
+export default async function UserPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const user = await getUser(resolvedParams.id);
 
   if (!user) {
     notFound();
@@ -30,7 +32,7 @@ export default async function UserPage({ params }: { params: { id: string } }) {
 
   const handleDelete = async () => {
     'use server';
-    await deleteUser(params.id);
+    await deleteUser(resolvedParams.id);
     redirect('/dashboard');
   };
 
