@@ -28,7 +28,8 @@ export default function Home() {
         />
       </section>
 
-      <section>
+      <section className="sectionProjects">
+        <h2>Our Projects</h2>
         <Projects />
       </section>
 

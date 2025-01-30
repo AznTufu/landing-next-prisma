@@ -1,28 +1,35 @@
-import { Button } from "@mui/material";
-import Image from "next/image";
-import React from "react";
-import "./ProjectCard.css";
+"use client";
 
-interface ProjectCardProps {
-  name: string;
-  imageUrl: string;
+import React, { useState } from "react";
+import { Project as PrismaProject } from "@prisma/client";
+import { Button } from "@mui/material";
+import ProjectCard from "../ProjectCard/ProjectCard";
+
+interface Project extends PrismaProject {
+  images: { filePath: string }[];
 }
 
-function ProjectCard({ name, imageUrl }: ProjectCardProps) {
+function ProjectsClient({ projects }: { projects: Project[] }) {
+  const [visibleCount, setVisibleCount] = useState(2);
+
+  const handleShowMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 2, projects.length));
+  };
+
   return (
-    <div className="projectCard">
-      <div className="imageContainer">
-        <Image
-          src={imageUrl}
-          alt={name}
-          width={400}
-          height={300}
-          objectFit="cover"
-        />
+    <div className="projectsContainer">
+      <div className="projectsGrid">
+        {projects.slice(0, visibleCount).map((project) => (
+          <ProjectCard
+            key={project.id}
+            name={project.title}
+            imageUrl={project.images[0].filePath}
+          />
+        ))}
       </div>
-      <div className="projectContent">
-        <h4>{name}</h4>
+      {visibleCount < projects.length && (
         <Button
+          onClick={handleShowMore}
           sx={{
             width: "fit-content",
             backgroundColor: "transparent",
@@ -35,7 +42,7 @@ function ProjectCard({ name, imageUrl }: ProjectCardProps) {
             position: "relative",
             overflow: "hidden",
             zIndex: 1,
-            fontFamily: "Inter, sans-serif",
+            marginTop: "32px",
             "&::after": {
               content: '""',
               position: "absolute",
@@ -56,13 +63,12 @@ function ProjectCard({ name, imageUrl }: ProjectCardProps) {
               transform: "translateX(0)",
             },
           }}
-          variant="outlined"
         >
-          View Project
+          Show More
         </Button>
-      </div>
+      )}
     </div>
   );
 }
 
-export default ProjectCard;
+export default ProjectsClient;

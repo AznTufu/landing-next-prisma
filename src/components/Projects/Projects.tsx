@@ -1,23 +1,16 @@
 import React from "react";
-import { Project } from "@prisma/client";
+import { Project as PrismaProject } from "@prisma/client";
 import { getAllProjects } from "@/app/actions/projectActions";
-import ProjectCard from "../ProjectCard/ProjectCard";
+import ProjectsClient from "./ProjectsClient";
 import "./Projects.css";
+
+interface Project extends PrismaProject {
+  images: { filePath: string }[];
+}
 
 async function Projects() {
   const projects: Project[] = await getAllProjects();
-
-  console.log(projects);
-
-  return (
-    <div className="projectsContainer">
-      <div className="projectsGrid">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} name={project.title} imageUrl={""} />
-        ))}
-      </div>
-    </div>
-  );
+  return <ProjectsClient projects={projects} />;
 }
 
 export default Projects;
