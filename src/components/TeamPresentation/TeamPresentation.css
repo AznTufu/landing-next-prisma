@@ -36,3 +36,12 @@
   object-position: 50% 30%;
   padding-bottom: 16px;
 }
+
+/* uder 1000 px flex direction column on teamPresentation */
+@media (max-width: 1000px) {
+  .teamPresentation {
+    grid-template-columns: 1fr;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}

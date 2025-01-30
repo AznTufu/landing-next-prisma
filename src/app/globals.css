@@ -182,3 +182,21 @@
   padding-top: 64px;
   padding-bottom: 64px;
 }
+
+@media (max-width: 1000px) {
+  .sectionProjects {
+    padding: 32px;
+  }
+  .sectionTestimonials {
+    padding: 32px;
+  }
+  .sectionTeamPresentation {
+    padding: 32px;
+  }
+  .sectionContact {
+    padding: 32px;
+  }
+  .sectionMainValues {
+    padding: 32px;
+  }
+}
