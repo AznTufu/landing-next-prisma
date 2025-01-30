@@ -1,24 +1,20 @@
 # Web Agency Landing Page
 
-A modern, responsive landing page for a web development agency built with Next.js 13.
+A modern, responsive landing page for a web development agency.
 
-## Features
-
-- 🎯 Landing Page Presentation
-- 👥 Contact Form
-- 💫 Modern Design & Animations
-- 📱 Dynamic Project Sections
-- 🎨 Custom UI Components
-
-## Tech Stack
-
-- Next.js 13
-- React
-- TypeScript
-- Material-UI
-- Prisma
+### Info
+The project url is https://landing-next-prisma.vercel.app/ and the performance report have been made at 15h (fr) 3PM (UK), the 30/01/2025.
+The project is about a web agency maintain by ZHANG Tony & PARISOT Romain, both working in freelance for the ZhangParisot Agency.
 
 ## Performance report
+
+### Tools used for the perf report
+
+- Lighthouse
+- PageSpeed Insights
+- WebPageTest
+- SemRush
+
 
 ![audit1](https://github.com/user-attachments/assets/e577c46d-c2e5-4059-8576-9d996b78a6cb)
 
@@ -41,17 +37,36 @@ See: https://pagespeed.web.dev/analysis/https-landing-next-prisma-vercel-app/c62
 
 ![audit6](https://github.com/user-attachments/assets/aa912629-eacc-4aa9-8525-ad72dc560c46)
 
+
 ### Scrore Summary
 
 | Metric                 | Mobile  | Desktop |
 |------------------------|---------|---------|
 | **LCP** (Largest Contentful Paint) | 23/25  | 25/25  |
 | **CLS** (Cumulative Layout Shift)  | 25/25  | 25/25  |
-| **FCP** (First Contentful Paint)   | 10     | 10     |
-| **TBT** (Total Blocking Time)      | 30     | 30     |
+| **FCP** (First Contentful Paint)   | 10/10  | 10/10  |
+| **TBT** (Total Blocking Time)      | 30/30  | 30/30  |
 | **Speed Index**                    | ~0.8   | ~0.8   |
 | **Total Blocking Time**             | ~600ms | ~100ms |
 
+## Recommandtions
+The recommendation to optimize the website is to work on the authority score to improve SEO. On the technical side, there is not much optimization to do except improving the color contrast for accessibility and refactoring the size of the JS script, which could be slightly optimized.
+
+## Features
+
+- 🎯 Landing Page Presentation
+- 👥 Contact Form
+- 💫 Modern Design & Animations
+- 📱 Dynamic Project Sections
+- 🎨 Custom UI Components
+
+## Tech Stack
+
+- Next.js 13
+- React
+- TypeScript
+- Material-UI
+- Prisma
 
 ## Getting Started
 
