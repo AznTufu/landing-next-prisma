@@ -35,7 +35,7 @@ export default function EditImagePage({
     e.preventDefault();
     if (!image || !projectId) return;
 
-    await updateImage(resolvedParams.id, image.filename, image.filePath, projectId);
+    await updateImage(resolvedParams.id, image.filename, image.filePath);
     router.push('/dashboard');
   };
 
