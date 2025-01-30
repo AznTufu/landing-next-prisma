@@ -24,6 +24,7 @@ function ProjectsClient({ projects }: { projects: Project[] }) {
             key={project.id}
             name={project.title}
             imageUrl={project.images[0].filePath}
+            projectId={project.id}
           />
         ))}
       </div>

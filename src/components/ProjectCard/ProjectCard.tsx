@@ -6,9 +6,10 @@ import "./ProjectCard.css";
 interface ProjectCardProps {
   name: string;
   imageUrl: string;
+  projectId: string;
 }
 
-function ProjectCard({ name, imageUrl }: ProjectCardProps) {
+function ProjectCard({ name, imageUrl, projectId }: ProjectCardProps) {
   return (
     <div className="projectCard">
       <div className="imageContainer">
@@ -23,6 +24,9 @@ function ProjectCard({ name, imageUrl }: ProjectCardProps) {
       <div className="projectContent">
         <h4>{name}</h4>
         <Button
+          onClick={() => {
+            window.location.href = "/project/" + projectId;
+          }}
           sx={{
             width: "fit-content",
             backgroundColor: "transparent",
